@@ -23,7 +23,8 @@ public class EntrepriseTest {
 		dd.ajouteEmploye(yc);
 		
 		fh.afficheHierarchie();
-		System.out.println("F. Holland a "+fh.nombreEmployes()+" employes");
+		System.out.println("F. Hollande a "+fh.nombreEmployes()+" employes");
+		System.out.println("D. Batho a "+db.nombreEmployes()+" employes");
 		
 		System.out.println("---------");
 		

@@ -64,7 +64,14 @@ public class Manager extends Employe {
 	 * donne le nombre d'employés sous les ordres d'un manager
 	 */
 	public int nombreEmployes() {
-		
+		int s = this.employes.size();
+		for (Employe e : this.employes) {
+			if (e instanceof Manager) {
+				Manager m = (Manager) e;
+				s += m.nombreEmployes();
+			}
+		}
+		return s;
 	}
 	
 	/**

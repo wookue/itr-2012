@@ -28,6 +28,14 @@ public class Manager extends Employe {
 		return manager;
 	}
 
+	/* (non-Javadoc)
+	 * @see Employe#toString()
+	 */
+	@Override
+	public String toString() {
+		return "MANAGER "+super.toString();
+	}
+
 	/**
 	 * @param manager the manager to set
 	 */
@@ -35,6 +43,23 @@ public class Manager extends Employe {
 		this.manager = manager;
 	}
 
+	/**
+	 * ajoute un employé à la liste des gens sous les ordres du 
+	 * manager
+	 * @param nouveau l'employé à ajouter
+	 */
+	public void ajouteEmploye(Employe nouveau) {
+		// ajout à la liste des nouveaux
+		this.employes.add(nouveau);
+		
+		// on vérifie si nouveau est lui-même un Manager
+		if (nouveau instanceof Manager) {
+			// sous-classement
+			Manager m1 = (Manager) nouveau;
+			m1.setManager(this);
+		}
+	}
+	
 	/**
 	 * @param nom
 	 * @param prenom

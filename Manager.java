@@ -15,9 +15,9 @@ public class Manager extends Employe {
 	private LinkedList<Employe> employes;
 	
 	/**
-	 * suprieur hirarchique
+	 * supï¿½rieur hiï¿½rarchique
 	 * 
-	 * pour le patron de l'entreprise, le suprieur vaudra null
+	 * pour le patron de l'entreprise, le supï¿½rieur vaudra null
 	 */
 	private Manager manager;
 	
@@ -44,15 +44,15 @@ public class Manager extends Employe {
 	}
 
 	/**
-	 * ajoute un employ ˆ la liste des gens sous les ordres du 
+	 * ajoute un employï¿½ ï¿½ la liste des gens sous les ordres du 
 	 * manager
-	 * @param nouveau l'employ ˆ ajouter
+	 * @param nouveau l'employï¿½ ï¿½ ajouter
 	 */
 	public void ajouteEmploye(Employe nouveau) {
-		// ajout ˆ la liste des nouveaux
+		// ajout ï¿½ la liste des nouveaux
 		this.employes.add(nouveau);
 		
-		// on vrifie si nouveau est lui-mme un Manager
+		// on vï¿½rifie si nouveau est lui-mï¿½me un Manager
 		if (nouveau instanceof Manager) {
 			// sous-classement
 			Manager m1 = (Manager) nouveau;
@@ -61,7 +61,7 @@ public class Manager extends Employe {
 	}
 	
 	/**
-	 * donne le nombre d'employs sous les ordres d'un manager
+	 * donne le nombre d'employï¿½s sous les ordres d'un manager
 	 */
 	public int nombreEmployes() {
 		int s = this.employes.size();
@@ -89,6 +89,25 @@ public class Manager extends Employe {
 			System.out.println(this.manager.getNomComplet()+" est le chef de "+this.getNomComplet());
 			this.manager.afficheHierarchie();
 		}
+	}
+	
+	public int nombreEmployesFemme(){
+		int femme = 0;
+		for (Employe e : this.employes) {
+			if (!e.isSexe()) femme++;
+			if (e instanceof Manager) {
+				Manager m = (Manager) e;
+				femme +=m.nombreEmployesFemme();
+			}
+		}
+		return femme;
+		
+	}
+	
+	public double pourcentageEmployesFemme(){
+		
+		return this.nombreEmployesFemme()/(double)this.nombreEmployes()*100;
+		
 	}
 	
 	/**
